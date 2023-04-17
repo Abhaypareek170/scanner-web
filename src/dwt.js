@@ -27,11 +27,15 @@ const DWT = () => {
     setDWObject(Dynamsoft.DWT.GetWebTwain(containerId));
   };
 
-  function RemoveAllImages() {
-    console.log('remove')
-   setDWObject(setDWObject(null))
-   Dynamsoft.DWT.Load();
-}
+  const RemoveAllImages =()=> {
+    console.log("removed");
+    setDWObject(setDWObject(null));
+    Dynamsoft.DWT.Load();
+  }
+
+  const removeBlankImg = ()=>{
+    console.log('Blank image removed.')
+  }
 
   const acquireImage = () => {
     if (DWObject) {
@@ -55,22 +59,21 @@ const DWT = () => {
     }
   };
 
-  function SaveWithFileDialog() {
+  const SaveWithFileDialog=()=> {
     if (DWObject) {
-        if (DWObject.HowManyImagesInBuffer > 0) {
-            DWObject.IfShowFileDialog = true;
-            DWObject.SaveAllAsPDF("DynamicWebTWAIN.pdf", OnSuccess, OnFailure);
-        }
+      if (DWObject.HowManyImagesInBuffer > 0) {
+        DWObject.IfShowFileDialog = true;
+        DWObject.SaveAllAsPDF("DynamicWebTWAIN.pdf", OnSuccess, OnFailure);
+      }
     }
-}
-function OnSuccess() {
-    console.log('successful');
-}
+  }
+  const OnSuccess=()=> {
+    console.log("successful");
+  }
 
-function OnFailure(errorCode, errorString) {
-    if(errorCode !== -2326)
-    alert(errorString);
-}
+  const OnFailure=(errorCode, errorString)=> {
+    if (errorCode !== -2326) alert(errorString);
+  }
 
   return (
     <>
@@ -111,30 +114,24 @@ function OnFailure(errorCode, errorString) {
           <br />
           <br />
 
-          <label htmlFor ="Resolution">Resolution</label>
+          <label htmlFor="Resolution">Resolution</label>
           <select id="Resolution">
             <option value="100px">100px</option>
             <option value="200px">200px</option>
           </select>
           <br />
           <br />
-          <button onClick={acquireImage}>Scan</button>
+          <button onClick={acquireImage}>Scan & save1</button>
           <br />
           <br />
-          <button onClick={SaveWithFileDialog}>Save</button>
+          <button onClick={SaveWithFileDialog}>Scan & save2</button>
           <br />
           <br />
-          <input
-            type="button"
-            value="Remove Blank Images"
-            onClick={acquireImage}
-          />
+          <button onClick={removeBlankImg}>Remove Blank Images</button>
           <br />
           <br />
 
-          <button
-            onClick={RemoveAllImages}
-          >Remove All Images</button>
+          <button onClick={RemoveAllImages}>Remove All Images</button>
           <br />
           <br />
         </div>
