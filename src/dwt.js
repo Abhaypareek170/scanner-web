@@ -121,10 +121,10 @@ const DWT = () => {
           </select>
           <br />
           <br />
-          <button onClick={acquireImage}>Scan & save1</button>
+          <button onClick={acquireImage}>Scan</button>
           <br />
           <br />
-          <button onClick={SaveWithFileDialog}>Scan & save2</button>
+          <button onClick={SaveWithFileDialog}>Save</button>
           <br />
           <br />
           <button onClick={removeBlankImg}>Remove Blank Images</button>
